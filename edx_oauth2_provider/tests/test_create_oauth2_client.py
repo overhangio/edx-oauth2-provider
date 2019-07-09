@@ -107,17 +107,6 @@ class CreateOauth2ClientTests(TestCase):
 
         self.assertIn(err_msg, exc.exception.message)
 
-    @ddt.data(
-        ('invalid', REDIRECT_URI, CLIENT_TYPES[0]),
-        (URL, 'invalid', CLIENT_TYPES[0]),
-    )
-    def test_url_validation(self, args):
-        """Verify that the command fails when the provided URLs are invalid."""
-        with self.assertRaises(CommandError) as exc:
-            self._call_command(args)
-
-        self.assertIn('URLs provided are invalid.', exc.exception.message)
-
     def test_client_type_validation(self):
         """Verify that the command fails when the provided client type is invalid."""
         with self.assertRaises(CommandError) as exc:
